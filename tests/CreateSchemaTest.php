@@ -29,7 +29,7 @@ class CreateSchemaTest extends TestCase
     /** @var  Connection */
     protected $connection;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->connection = CreateConnectionTest::createConnection();
     }

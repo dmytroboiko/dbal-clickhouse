@@ -25,13 +25,13 @@ class ArraysTest extends TestCase
     /** @var  Connection */
     protected $connection;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->connection = CreateConnectionTest::createConnection();
         ArrayType::registerArrayTypes($this->connection->getDatabasePlatform());
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->connection->exec('DROP TABLE test_array_table');
     }

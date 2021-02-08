@@ -24,7 +24,7 @@ class InsertTest extends TestCase
     /** @var  Connection */
     protected $connection;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->connection = CreateConnectionTest::createConnection();
 
@@ -43,7 +43,7 @@ class InsertTest extends TestCase
         }
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->connection->exec('DROP TABLE test_insert_table');
     }

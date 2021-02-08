@@ -26,7 +26,7 @@ class SelectTest extends TestCase
     /** @var  Connection */
     protected $connection;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->connection = CreateConnectionTest::createConnection();
 
@@ -48,7 +48,7 @@ class SelectTest extends TestCase
         $this->connection->exec("INSERT INTO test_select_table(id, payload, hits) VALUES (1, 'v1', 101), (2, 'v2', 202), (3, 'v3', 303), (4, 'v4', 404), (5, 'v4', 505), (6, '  t1   ', 606), (7, 'aat2aaa', 707)");
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->connection->exec('DROP TABLE test_select_table');
     }
@@ -204,7 +204,7 @@ class SelectTest extends TestCase
 
     public function testDynamicParametersSelect()
     {
-        $stmt = $this->connection->prepare('SELECT payload, AVG(hits) AS avg_hits FROM test_select_table WHERE id > :id GROUP BY payload');
+        $stmt = $this->connection->prepare('SELECT payload, AVG(hits) AS avg_hits FROM test_select_table WHERE id > :id GROUP BY payload ORDER BY avg_hits');
 
         $stmt->bindValue('id', 3, 'integer');
         $stmt->execute();
